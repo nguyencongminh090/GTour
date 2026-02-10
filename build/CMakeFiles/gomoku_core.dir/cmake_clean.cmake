@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/gomoku_core.dir/src/core/jobs.cpp.o.d"
   "CMakeFiles/gomoku_core.dir/src/core/openings.cpp.o"
   "CMakeFiles/gomoku_core.dir/src/core/openings.cpp.o.d"
+  "CMakeFiles/gomoku_core.dir/src/core/options.cpp.o"
+  "CMakeFiles/gomoku_core.dir/src/core/options.cpp.o.d"
   "CMakeFiles/gomoku_core.dir/src/core/position.cpp.o"
   "CMakeFiles/gomoku_core.dir/src/core/position.cpp.o.d"
   "CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o"

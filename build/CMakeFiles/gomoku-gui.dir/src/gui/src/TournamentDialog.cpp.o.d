@@ -1599,4 +1599,8 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: \
  /usr/include/c++/13/cstdint \
  /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/sprt.h \
  /usr/include/c++/13/cinttypes /usr/include/inttypes.h \
- /usr/include/c++/13/iostream
+ /usr/include/c++/13/iostream /usr/include/c++/13/fstream \
+ /usr/include/c++/13/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
+ /usr/include/c++/13/bits/fstream.tcc

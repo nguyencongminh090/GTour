@@ -419,6 +419,30 @@ src/core/openings.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku_core.dir/build.make CMakeFiles/gomoku_core.dir/src/core/openings.cpp.s
 .PHONY : src/core/openings.cpp.s
 
+src/core/options.o: src/core/options.cpp.o
+.PHONY : src/core/options.o
+
+# target to build an object file
+src/core/options.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku_core.dir/build.make CMakeFiles/gomoku_core.dir/src/core/options.cpp.o
+.PHONY : src/core/options.cpp.o
+
+src/core/options.i: src/core/options.cpp.i
+.PHONY : src/core/options.i
+
+# target to preprocess a source file
+src/core/options.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku_core.dir/build.make CMakeFiles/gomoku_core.dir/src/core/options.cpp.i
+.PHONY : src/core/options.cpp.i
+
+src/core/options.s: src/core/options.cpp.s
+.PHONY : src/core/options.s
+
+# target to generate assembly for a file
+src/core/options.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku_core.dir/build.make CMakeFiles/gomoku_core.dir/src/core/options.cpp.s
+.PHONY : src/core/options.cpp.s
+
 src/core/position.o: src/core/position.cpp.o
 .PHONY : src/core/position.o
 
@@ -703,6 +727,9 @@ help:
 	@echo "... src/core/openings.o"
 	@echo "... src/core/openings.i"
 	@echo "... src/core/openings.s"
+	@echo "... src/core/options.o"
+	@echo "... src/core/options.i"
+	@echo "... src/core/options.s"
 	@echo "... src/core/position.o"
 	@echo "... src/core/position.i"
 	@echo "... src/core/position.s"

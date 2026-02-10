@@ -17,6 +17,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/game.cpp" "CMakeFiles/gomoku_core.dir/src/core/game.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/game.cpp.o.d"
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/jobs.cpp" "CMakeFiles/gomoku_core.dir/src/core/jobs.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/jobs.cpp.o.d"
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/openings.cpp" "CMakeFiles/gomoku_core.dir/src/core/openings.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/openings.cpp.o.d"
+  "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/options.cpp" "CMakeFiles/gomoku_core.dir/src/core/options.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/options.cpp.o.d"
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/position.cpp" "CMakeFiles/gomoku_core.dir/src/core/position.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/position.cpp.o.d"
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/seqwriter.cpp" "CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o.d"
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/sprt.cpp" "CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o.d"

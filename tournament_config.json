@@ -1,0 +1,50 @@
+{
+  "options": {
+  "games": 10,
+  "rounds": 1,
+  "concurrency": 1,
+  "boardSize": 15,
+  "openings": "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/openings.txt",
+  "gameRule": 1,
+  "openingType": 1,
+  "drawCount": 0,
+  "drawScore": 0,
+  "resignCount": 0,
+  "resignScore": 0,
+  "forceDrawAfter": 0,
+  "random": true,
+  "useTURN": true,
+  "pgn": "",
+  "sgf": "",
+  "msg": "",
+  "fatalError": false
+},
+  "engines": [
+{
+  "name": "RapfiSE",
+  "cmd": "/media/ngmint/Data/Application/GomokuApplication/YixinUI/engine_o2",
+  "timeoutTurn": 15,000,
+  "timeoutMatch": 0,
+  "increment": 0,
+  "nodes": 0,
+  "depth": 0,
+  "numThreads": 8,
+  "maxMemory": 1,073,741,824,
+  "tolerance": 5,000,
+  "options": []
+},
+{
+  "name": "RapfiPE",
+  "cmd": "/media/ngmint/Data/Application/GomokuApplication/YixinUI/engine",
+  "timeoutTurn": 15,000,
+  "timeoutMatch": 0,
+  "increment": 0,
+  "nodes": 0,
+  "depth": 0,
+  "numThreads": 8,
+  "maxMemory": 1,073,741,824,
+  "tolerance": 5,000,
+  "options": []
+}
+  ]
+}

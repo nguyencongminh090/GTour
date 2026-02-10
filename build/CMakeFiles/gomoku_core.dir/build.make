@@ -195,10 +195,24 @@ CMakeFiles/gomoku_core.dir/src/core/openings.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gomoku_core.dir/src/core/openings.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/openings.cpp -o CMakeFiles/gomoku_core.dir/src/core/openings.cpp.s
 
+CMakeFiles/gomoku_core.dir/src/core/options.cpp.o: CMakeFiles/gomoku_core.dir/flags.make
+CMakeFiles/gomoku_core.dir/src/core/options.cpp.o: /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/options.cpp
+CMakeFiles/gomoku_core.dir/src/core/options.cpp.o: CMakeFiles/gomoku_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/options.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gomoku_core.dir/src/core/options.cpp.o -MF CMakeFiles/gomoku_core.dir/src/core/options.cpp.o.d -o CMakeFiles/gomoku_core.dir/src/core/options.cpp.o -c /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/options.cpp
+
+CMakeFiles/gomoku_core.dir/src/core/options.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gomoku_core.dir/src/core/options.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/options.cpp > CMakeFiles/gomoku_core.dir/src/core/options.cpp.i
+
+CMakeFiles/gomoku_core.dir/src/core/options.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gomoku_core.dir/src/core/options.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/options.cpp -o CMakeFiles/gomoku_core.dir/src/core/options.cpp.s
+
 CMakeFiles/gomoku_core.dir/src/core/position.cpp.o: CMakeFiles/gomoku_core.dir/flags.make
 CMakeFiles/gomoku_core.dir/src/core/position.cpp.o: /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/position.cpp
 CMakeFiles/gomoku_core.dir/src/core/position.cpp.o: CMakeFiles/gomoku_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/position.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/position.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gomoku_core.dir/src/core/position.cpp.o -MF CMakeFiles/gomoku_core.dir/src/core/position.cpp.o.d -o CMakeFiles/gomoku_core.dir/src/core/position.cpp.o -c /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/position.cpp
 
 CMakeFiles/gomoku_core.dir/src/core/position.cpp.i: cmake_force
@@ -212,7 +226,7 @@ CMakeFiles/gomoku_core.dir/src/core/position.cpp.s: cmake_force
 CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o: CMakeFiles/gomoku_core.dir/flags.make
 CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o: /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/seqwriter.cpp
 CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o: CMakeFiles/gomoku_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o -MF CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o.d -o CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o -c /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/seqwriter.cpp
 
 CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.i: cmake_force
@@ -226,7 +240,7 @@ CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.s: cmake_force
 CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o: CMakeFiles/gomoku_core.dir/flags.make
 CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o: /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/sprt.cpp
 CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o: CMakeFiles/gomoku_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o -MF CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o.d -o CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o -c /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/sprt.cpp
 
 CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.i: cmake_force
@@ -240,7 +254,7 @@ CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.s: cmake_force
 CMakeFiles/gomoku_core.dir/src/core/util.cpp.o: CMakeFiles/gomoku_core.dir/flags.make
 CMakeFiles/gomoku_core.dir/src/core/util.cpp.o: /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/util.cpp
 CMakeFiles/gomoku_core.dir/src/core/util.cpp.o: CMakeFiles/gomoku_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/util.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/util.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gomoku_core.dir/src/core/util.cpp.o -MF CMakeFiles/gomoku_core.dir/src/core/util.cpp.o.d -o CMakeFiles/gomoku_core.dir/src/core/util.cpp.o -c /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/util.cpp
 
 CMakeFiles/gomoku_core.dir/src/core/util.cpp.i: cmake_force
@@ -254,7 +268,7 @@ CMakeFiles/gomoku_core.dir/src/core/util.cpp.s: cmake_force
 CMakeFiles/gomoku_core.dir/src/core/workers.cpp.o: CMakeFiles/gomoku_core.dir/flags.make
 CMakeFiles/gomoku_core.dir/src/core/workers.cpp.o: /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/workers.cpp
 CMakeFiles/gomoku_core.dir/src/core/workers.cpp.o: CMakeFiles/gomoku_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/workers.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/gomoku_core.dir/src/core/workers.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gomoku_core.dir/src/core/workers.cpp.o -MF CMakeFiles/gomoku_core.dir/src/core/workers.cpp.o.d -o CMakeFiles/gomoku_core.dir/src/core/workers.cpp.o -c /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/workers.cpp
 
 CMakeFiles/gomoku_core.dir/src/core/workers.cpp.i: cmake_force
@@ -276,6 +290,7 @@ gomoku_core_OBJECTS = \
 "CMakeFiles/gomoku_core.dir/src/core/game.cpp.o" \
 "CMakeFiles/gomoku_core.dir/src/core/jobs.cpp.o" \
 "CMakeFiles/gomoku_core.dir/src/core/openings.cpp.o" \
+"CMakeFiles/gomoku_core.dir/src/core/options.cpp.o" \
 "CMakeFiles/gomoku_core.dir/src/core/position.cpp.o" \
 "CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o" \
 "CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o" \
@@ -294,6 +309,7 @@ libgomoku_core.a: CMakeFiles/gomoku_core.dir/src/core/extern/xxhash.c.o
 libgomoku_core.a: CMakeFiles/gomoku_core.dir/src/core/game.cpp.o
 libgomoku_core.a: CMakeFiles/gomoku_core.dir/src/core/jobs.cpp.o
 libgomoku_core.a: CMakeFiles/gomoku_core.dir/src/core/openings.cpp.o
+libgomoku_core.a: CMakeFiles/gomoku_core.dir/src/core/options.cpp.o
 libgomoku_core.a: CMakeFiles/gomoku_core.dir/src/core/position.cpp.o
 libgomoku_core.a: CMakeFiles/gomoku_core.dir/src/core/seqwriter.cpp.o
 libgomoku_core.a: CMakeFiles/gomoku_core.dir/src/core/sprt.cpp.o
@@ -301,7 +317,7 @@ libgomoku_core.a: CMakeFiles/gomoku_core.dir/src/core/util.cpp.o
 libgomoku_core.a: CMakeFiles/gomoku_core.dir/src/core/workers.cpp.o
 libgomoku_core.a: CMakeFiles/gomoku_core.dir/build.make
 libgomoku_core.a: CMakeFiles/gomoku_core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX static library libgomoku_core.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX static library libgomoku_core.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/gomoku_core.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gomoku_core.dir/link.txt --verbose=$(VERBOSE)
 

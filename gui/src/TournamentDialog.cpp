@@ -1,5 +1,6 @@
 #include "TournamentDialog.h"
 #include <iostream>
+#include <fstream>
 
 TournamentDialog::TournamentDialog(Gtk::Window& parent)
 : Gtk::Dialog("New Tournament", parent, true)
@@ -26,10 +27,14 @@ TournamentDialog::TournamentDialog(Gtk::Window& parent)
     m_BoxButtons.set_halign(Gtk::Align::END);
     m_BoxButtons.set_spacing(10);
     m_BoxButtons.set_margin_top(8);
+    m_BoxButtons.append(m_BtnLoadSettings);
+    m_BoxButtons.append(m_BtnSaveSettings);
     m_BoxButtons.append(m_BtnCancel);
     m_BoxButtons.append(m_BtnStart);
     m_ContentBox.append(m_BoxButtons);
 
+    m_BtnLoadSettings.signal_clicked().connect([this]() { on_load_settings(); });
+    m_BtnSaveSettings.signal_clicked().connect([this]() { on_save_settings(); });
     m_BtnCancel.signal_clicked().connect([this]() { response(Gtk::ResponseType::CANCEL); });
     m_BtnStart.signal_clicked().connect([this]() { response(Gtk::ResponseType::OK); });
 }
@@ -398,4 +403,201 @@ std::vector<EngineOptions> TournamentDialog::get_engine_options() const
     }
 
     return eos;
+}
+
+// ============================================================
+//  Save/Load Settings
+// ============================================================
+
+void TournamentDialog::on_save_settings()
+{
+    auto dialog = Gtk::FileDialog::create();
+    dialog->set_title("Save Tournament Settings");
+    dialog->set_initial_name("tournament_config.json");
+
+    dialog->save(*this, [this, dialog](const Glib::RefPtr<Gio::AsyncResult>& result) {
+        try {
+            auto file = dialog->save_finish(result);
+            if (file) {
+                std::string path = file->get_path();
+                std::ofstream ofs(path);
+                if (ofs.is_open()) {
+                    Options o = get_options();
+                    std::vector<EngineOptions> eos = get_engine_options();
+                    
+                    // Simple manual JSON construction
+                    ofs << "{\n";
+                    ofs << "  \"options\": ";
+                    o.to_json(ofs);
+                    ofs << ",\n";
+                    ofs << "  \"engines\": [\n";
+                    for (size_t i = 0; i < eos.size(); ++i) {
+                        eos[i].to_json(ofs);
+                        if (i < eos.size() - 1) ofs << ",";
+                        ofs << "\n";
+                    }
+                    ofs << "  ]\n";
+                    ofs << "}\n";
+                    ofs.close();
+                }
+            }
+        } catch (const Glib::Error& err) {
+            std::cerr << "Save error: " << err.what() << std::endl;
+        }
+    });
+}
+
+void TournamentDialog::on_load_settings()
+{
+    auto dialog = Gtk::FileDialog::create();
+    dialog->set_title("Load Tournament Settings");
+    
+    // Filter for JSON
+    auto filter = Gtk::FileFilter::create();
+    filter->set_name("JSON Files");
+    filter->add_pattern("*.json");
+    auto filters = Gio::ListStore<Gtk::FileFilter>::create();
+    filters->append(filter);
+    dialog->set_filters(filters);
+
+    dialog->open(*this, [this, dialog](const Glib::RefPtr<Gio::AsyncResult>& result) {
+        try {
+            auto file = dialog->open_finish(result);
+            if (file) {
+                std::string path = file->get_path();
+                std::ifstream ifs(path);
+                if (ifs.is_open()) {
+                    // Simple manual JSON parsing (naive)
+                    // We expect {"options": {...}, "engines": [...]}
+                    
+                    // consume up to "options"
+                    std::string line;
+                    Options o;
+                    std::vector<EngineOptions> eos;
+                    
+                    // Helper to stream through the file slightly better than line-by-line
+                    // But for now, let's rely on Options::from_json consuming its part
+                    // We just need to skip the outer structure.
+                    
+                    char c;
+                    while (ifs.get(c)) {
+                        if (c == '{') break; 
+                    }
+                    
+                    // look for "options" key
+                    while (ifs.good()) {
+                        // skip whitespace
+                        while (isspace(ifs.peek())) ifs.get();
+                        
+                        // Parse key
+                        if (ifs.peek() == '"') {
+                            std::string key;
+                            ifs.get(); // "
+                            while (ifs.good()) {
+                                char k = ifs.get();
+                                if (k == '"') break;
+                                key += k;
+                            }
+                            
+                            while (isspace(ifs.peek())) ifs.get();
+                            if (ifs.peek() == ':') ifs.get();
+                            
+                            if (key == "options") {
+                                o.from_json(ifs);
+                            } else if (key == "engines") {
+                                while (isspace(ifs.peek())) ifs.get();
+                                if (ifs.peek() == '[') {
+                                    ifs.get();
+                                    while (ifs.good()) {
+                                        while (isspace(ifs.peek())) ifs.get();
+                                        if (ifs.peek() == ']') { ifs.get(); break; }
+                                        if (ifs.peek() == ',') { ifs.get(); continue; }
+                                        
+                                        EngineOptions eo;
+                                        eo.from_json(ifs);
+                                        eos.push_back(eo);
+                                    }
+                                }
+                            }
+                        }
+                        
+                        while (isspace(ifs.peek())) ifs.get();
+                        if (ifs.peek() == ',') ifs.get();
+                        if (ifs.peek() == '}') break; // End of root object
+                    }
+                    
+                    apply_options_to_ui(o);
+                    apply_engine_options_to_ui(eos);
+                }
+            }
+        } catch (const Glib::Error& err) {
+            std::cerr << "Load error: " << err.what() << std::endl;
+        }
+    });
+}
+
+void TournamentDialog::apply_options_to_ui(const Options& o)
+{
+    m_SpinBoardSize.set_value(o.boardSize);
+    m_ComboGameRule.set_active_id(std::to_string((int)o.gameRule));
+    m_SpinGames.set_value(o.games);
+    m_SpinRounds.set_value(o.rounds);
+    m_SpinConcurrency.set_value(o.concurrency);
+
+    m_EntryOpening.set_text(o.openings);
+    m_ComboOpeningType.set_active_id(o.openingType == OPENING_POS ? "pos" : "offset");
+    m_ChkRandomOrder.set_active(o.random);
+    m_ChkRepeat.set_active(o.repeat);
+    m_ChkTransform.set_active(o.transform);
+
+    m_SpinResignCount.set_value(o.resignCount);
+    m_SpinResignScore.set_value(o.resignScore);
+    m_SpinDrawCount.set_value(o.drawCount);
+    m_SpinDrawScore.set_value(o.drawScore);
+    m_SpinDrawAfter.set_value(o.forceDrawAfter);
+
+    m_EntryPgn.set_text(o.pgn);
+    m_EntrySgf.set_text(o.sgf);
+    m_ChkLog.set_active(o.log);
+    m_ChkDebug.set_active(o.debug);
+
+    m_ChkGauntlet.set_active(o.gauntlet);
+    m_ChkLoseOnly.set_active(o.saveLoseOnly);
+    m_ChkUseTURN.set_active(o.useTURN);
+    m_ChkFatalError.set_active(o.fatalError);
+}
+
+void TournamentDialog::apply_engine_options_to_ui(const std::vector<EngineOptions>& eos)
+{
+    // Clear existing engines
+    while (auto* child = m_BoxEngineList.get_first_child()) {
+        m_BoxEngineList.remove(*child);
+    }
+    m_EngineRows.clear();
+    
+    // Add engines from list
+    for (const auto& eo : eos) {
+        on_add_engine(); // adds a minimal row
+        // Populate the last added row
+        auto& row = m_EngineRows.back();
+        row->entryCmd.set_text(eo.cmd);
+        row->entryName.set_text(eo.name);
+    }
+    
+    // Update common settings from the first engine (if any)
+    if (!eos.empty()) {
+        const auto& first = eos[0];
+        m_SpinTurnTimeout.set_value(first.timeoutTurn);
+        m_SpinMatchTimeout.set_value(first.timeoutMatch);
+        m_SpinIncrement.set_value(first.increment);
+        m_SpinMaxMemory.set_value(first.maxMemory / 1048576);
+        m_SpinThreads.set_value(first.numThreads);
+        m_SpinTolerance.set_value(first.tolerance / 1000.0);
+    }
+    
+    // Ensure we have at least 2 rows visual
+    while (m_EngineRows.size() < 2) {
+        on_add_engine();
+    }
+    update_remove_buttons();
 }
