@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/c-gomoku-cli.dir/src/cli/main.cpp.o" "CMakeFiles/c-gomoku-cli.dir/src/cli/options_cli.cpp.o" -o c-gomoku-cli  libgomoku_core.a -lpthread 

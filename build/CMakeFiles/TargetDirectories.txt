@@ -1,0 +1,5 @@
+/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles/gomoku_core.dir
+/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles/c-gomoku-cli.dir
+/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles/gomoku-gui.dir
+/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles/edit_cache.dir
+/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles/rebuild_cache.dir
