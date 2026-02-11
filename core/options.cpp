@@ -66,15 +66,27 @@ static std::string parse_string(std::istream& is) {
 }
 
 static int parse_int(std::istream& is) {
+    skip_ws(is);
+    int sign = 1;
+    if (is.peek() == '-') { sign = -1; is.get(); }
+    else if (is.peek() == '+') { is.get(); }
     int v = 0;
-    is >> v;
-    return v;
+    while (isdigit(is.peek())) {
+        v = v * 10 + (is.get() - '0');
+    }
+    return sign * v;
 }
 
 static int64_t parse_int64(std::istream& is) {
+    skip_ws(is);
+    int64_t sign = 1;
+    if (is.peek() == '-') { sign = -1; is.get(); }
+    else if (is.peek() == '+') { is.get(); }
     int64_t v = 0;
-    is >> v;
-    return v;
+    while (isdigit(is.peek())) {
+        v = v * 10 + (is.get() - '0');
+    }
+    return sign * v;
 }
 
 static bool parse_bool(std::istream& is) {
@@ -119,7 +131,7 @@ void Options::from_json(std::istream& is) {
         
         std::string key = parse_string(is);
         consume(is, ':');
-        
+
         if (key == "games") games = parse_int(is);
         else if (key == "rounds") rounds = parse_int(is);
         else if (key == "concurrency") concurrency = parse_int(is);
@@ -139,7 +151,7 @@ void Options::from_json(std::istream& is) {
         else if (key == "msg") msg = parse_string(is);
         else if (key == "fatalError") fatalError = parse_bool(is);
         else {
-            skip_json_value(is);
+            Options::skip_json_value(is);
         }
         consume(is, ',');
     }

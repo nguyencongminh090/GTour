@@ -470,26 +470,18 @@ void TournamentDialog::on_load_settings()
                     // Simple manual JSON parsing (naive)
                     // We expect {"options": {...}, "engines": [...]}
                     
-                    // consume up to "options"
-                    std::string line;
                     Options o;
                     std::vector<EngineOptions> eos;
-                    
-                    // Helper to stream through the file slightly better than line-by-line
-                    // But for now, let's rely on Options::from_json consuming its part
-                    // We just need to skip the outer structure.
                     
                     char c;
                     while (ifs.get(c)) {
                         if (c == '{') break; 
                     }
                     
-                    // look for "options" key
+                    // look for keys
                     while (ifs.good()) {
-                        // skip whitespace
                         while (isspace(ifs.peek())) ifs.get();
                         
-                        // Parse key
                         if (ifs.peek() == '"') {
                             std::string key;
                             ifs.get(); // "
@@ -518,7 +510,6 @@ void TournamentDialog::on_load_settings()
                                         eos.push_back(eo);
                                     }
                                 }
-                            }
                             } else {
                                 Options::skip_json_value(ifs);
                             }
@@ -535,6 +526,8 @@ void TournamentDialog::on_load_settings()
             }
         } catch (const Glib::Error& err) {
             std::cerr << "Load error: " << err.what() << std::endl;
+        } catch (const std::exception& ex) {
+            std::cerr << "Exception: " << ex.what() << std::endl;
         }
     });
 }
