@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/gomoku-gui.dir/src/gui/main.cpp.o.d"
   "CMakeFiles/gomoku-gui.dir/src/gui/src/BoardWidget.cpp.o"
   "CMakeFiles/gomoku-gui.dir/src/gui/src/BoardWidget.cpp.o.d"
+  "CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o"
+  "CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o.d"
   "CMakeFiles/gomoku-gui.dir/src/gui/src/MainWindow.cpp.o"
   "CMakeFiles/gomoku-gui.dir/src/gui/src/MainWindow.cpp.o.d"
   "CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o"

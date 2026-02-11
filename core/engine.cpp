@@ -532,13 +532,14 @@ bool Engine::bestmove(int64_t     &timeLeft,
         timeLeft          = std::max<int64_t>(matchTimeLimit - now, 0);
         turnTimeLeft      = turnTimeLimit - now;
 
-        if (const char *tail; process_common_output(line.c_str(), tail) == OT_MESSAGE) {
+        if (const char *tail; process_common_output(line.c_str(), tail, moveply) == OT_MESSAGE) {
             // record engine messages
             if (messages)
                 *messages += format("%i) %s: %s\n", moveply, name, tail);
 
             // parse and store thing information to info
             parse_thinking_message(tail, info);
+            if (onInfo) onInfo(info, moveply);
         }
         else if (Position::is_valid_move_gomostr(line)) {
             best   = line;
@@ -559,9 +560,10 @@ bool Engine::bestmove(int64_t     &timeLeft,
                 goto Exit;
 
             if (const char *tail;
-                process_common_output(line.c_str(), tail) == OT_MESSAGE) {
+                process_common_output(line.c_str(), tail, moveply) == OT_MESSAGE) {
                 // parse and store thinking information to info
                 parse_thinking_message(tail, info);
+                if (onInfo) onInfo(info, moveply);
             }
         } while (result = Position::is_valid_move_gomostr(line), !result);
     }
@@ -666,7 +668,7 @@ void Engine::parse_about(const char *fallbackName)
 
 // process MESSAGE, UNKNOWN, ERROR, DEBUG messages
 // @param tail_out Pointer to receive the start position of output without prefix.
-Engine::OutputType Engine::process_common_output(const char *line, const char *&tail)
+Engine::OutputType Engine::process_common_output(const char *line, const char *&tail, int ply)
 {
     tail            = nullptr;
     OutputType type = OT_DIRECT;
@@ -702,7 +704,48 @@ Engine::OutputType Engine::process_common_output(const char *line, const char *&
 
 void Engine::parse_thinking_message([[maybe_unused]] const char *line, Info &info)
 {
-    // Set default value
-    info.score = 0;
-    info.depth = 0;
+    // Replace '=' with space to handle "depth=10" and "depth 10" uniformly
+    std::string temp = line;
+    for (char &c : temp) {
+        if (c == '=') c = ' ';
+    }
+
+    std::stringstream ss(temp);
+    std::string token;
+    
+    while (ss >> token) {
+        if (token == "depth") {
+            if (ss >> token) info.depth = std::atoi(token.c_str());
+        }
+        else if (token == "time") {
+            if (ss >> token) info.time = std::atoll(token.c_str());
+        }
+        else if (token == "score" || token == "eval") {
+            std::string val;
+            if (ss >> val) {
+                if (val == "cp") {
+                    if (ss >> val) info.score = std::atoi(val.c_str());
+                }
+                else if (val == "mate") {
+                    if (ss >> val) {
+                        int m = std::atoi(val.c_str());
+                        // Encode mate score: >0 for win, <0 for loss
+                        // We use a large number outside normal cp range (e.g. +/- 30000)
+                        if (m > 0) info.score = 30000 - m;
+                        else info.score = -30000 - m;
+                    }
+                }
+                else {
+                    // direct score or "mate" was implicit? 
+                    // Assume direct cp score if it's a number
+                    try {
+                        size_t idx;
+                        int s = std::stoi(val, &idx);
+                        if (idx == val.size()) info.score = s;
+                    } catch(...) {}
+                }
+            }
+        }
+    }
 }
+

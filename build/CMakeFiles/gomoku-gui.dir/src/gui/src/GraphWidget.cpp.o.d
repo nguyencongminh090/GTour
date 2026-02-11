@@ -1,7 +1,7 @@
-CMakeFiles/gomoku-gui.dir/src/gui/src/MainWindow.cpp.o: \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/src/MainWindow.cpp \
+CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o: \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/src/GraphWidget.cpp \
  /usr/include/stdc-predef.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/include/MainWindow.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/include/GraphWidget.h \
  /usr/include/gtkmm-4.0/gtkmm.h /usr/include/glibmm-2.68/glibmm.h \
  /usr/lib/x86_64-linux-gnu/glibmm-2.68/include/glibmmconfig.h \
  /usr/include/glibmm-2.68/glibmm/base64.h /usr/include/c++/13/string \
@@ -1592,30 +1592,12 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/MainWindow.cpp.o: \
  /usr/include/gtkmm-4.0/gtkmm/volumebutton.h \
  /usr/include/gtkmm-4.0/gtkmm/widgetpaintable.h \
  /usr/include/gtkmm-4.0/gtkmm/windowcontrols.h \
- /usr/include/gtkmm-4.0/gtkmm/windowhandle.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/include/BoardWidget.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/BoardState.h \
- /usr/include/c++/13/cstdint \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/include/OpeningCreatorPanel.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/include/GraphWidget.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/TournamentManager.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/engine.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/extern/lz4frame.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/game.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/options.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/position.h \
- /usr/include/c++/13/cassert /usr/include/assert.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/sprt.h \
- /usr/include/c++/13/cinttypes /usr/include/inttypes.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/jobs.h \
- /usr/include/c++/13/mutex /usr/include/c++/13/bits/chrono.h \
- /usr/include/c++/13/ratio /usr/include/c++/13/bits/parse_numbers.h \
- /usr/include/c++/13/bits/std_mutex.h \
- /usr/include/c++/13/bits/unique_lock.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/openings.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/seqwriter.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/util.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/workers.h \
- /usr/include/c++/13/thread /usr/include/c++/13/bits/std_thread.h \
- /usr/include/c++/13/bits/this_thread_sleep.h \
- /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/include/TournamentDialog.h
+ /usr/include/gtkmm-4.0/gtkmm/windowhandle.h /usr/include/c++/13/iomanip \
+ /usr/include/c++/13/locale \
+ /usr/include/c++/13/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/13/bits/codecvt.h \
+ /usr/include/c++/13/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/13/bits/locale_conv.h \
+ /usr/include/c++/13/bits/quoted_string.h

@@ -58,6 +58,17 @@ public:
     // Thread-safe progress snapshot for the GUI
     TournamentProgress getProgress() const;
 
+    struct EvalInfo {
+        size_t gameIdx;
+        int    moveIdx;
+        int    engineIdx; // 0 or 1
+        int    score;     // centipawns or mate distance
+        bool   isMate;
+        double winrate;
+    };
+
+    std::function<void(const EvalInfo&)> onEngineEval;
+
 private:
     void thread_start(Worker *w);
     void close_sample_file(bool signal_exit);

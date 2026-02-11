@@ -519,6 +519,9 @@ void TournamentDialog::on_load_settings()
                                     }
                                 }
                             }
+                            } else {
+                                Options::skip_json_value(ifs);
+                            }
                         }
                         
                         while (isspace(ifs.peek())) ifs.get();

@@ -60,6 +60,9 @@ struct Options
     // Minimal JSON serialization
     void to_json(std::ostream& os) const;
     void from_json(std::istream& is);
+
+    // Robustly skip a JSON value (object, array, string, number, bool, null)
+    static void skip_json_value(std::istream& is);
 };
 
 struct EngineOptions

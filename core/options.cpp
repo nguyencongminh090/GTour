@@ -139,11 +139,7 @@ void Options::from_json(std::istream& is) {
         else if (key == "msg") msg = parse_string(is);
         else if (key == "fatalError") fatalError = parse_bool(is);
         else {
-            // skip value simple... this parser is very naive for now
-            skip_ws(is);
-            if (is.peek() == '"') parse_string(is);
-            else if (isdigit(is.peek()) || is.peek() == '-') parse_int(is);
-            else parse_bool(is); 
+            skip_json_value(is);
         }
         consume(is, ',');
     }
@@ -207,12 +203,42 @@ void EngineOptions::from_json(std::istream& is) {
             }
         }
         else {
-             // skip value
-            skip_ws(is);
-            if (is.peek() == '"') parse_string(is);
-            else if (isdigit(is.peek()) || is.peek() == '-') parse_int64(is);
-            else parse_bool(is);
+             Options::skip_json_value(is);
         }
         consume(is, ',');
+    }
+}
+
+void Options::skip_json_value(std::istream& is) {
+    skip_ws(is);
+    char c = is.peek();
+    if (c == '"') {
+        parse_string(is);
+    } else if (c == '{') {
+        is.get();
+        while (is.good()) {
+            skip_ws(is);
+            if (is.peek() == '}') { is.get(); break; }
+            parse_string(is); // key
+            consume(is, ':');
+            Options::skip_json_value(is); // value
+            consume(is, ',');
+        }
+    } else if (c == '[') {
+        is.get();
+        while (is.good()) {
+            skip_ws(is);
+            if (is.peek() == ']') { is.get(); break; }
+            Options::skip_json_value(is);
+            consume(is, ',');
+        }
+    } else {
+        // Primitive: number, bool, null
+        // Consume valid chars until delimiter
+        while (is.good()) {
+            char next = is.peek();
+            if (isspace(next) || next == ',' || next == '}' || next == ']') break;
+            is.get();
+        }
     }
 }

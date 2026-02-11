@@ -611,6 +611,30 @@ src/gui/src/BoardWidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku-gui.dir/build.make CMakeFiles/gomoku-gui.dir/src/gui/src/BoardWidget.cpp.s
 .PHONY : src/gui/src/BoardWidget.cpp.s
 
+src/gui/src/GraphWidget.o: src/gui/src/GraphWidget.cpp.o
+.PHONY : src/gui/src/GraphWidget.o
+
+# target to build an object file
+src/gui/src/GraphWidget.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku-gui.dir/build.make CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o
+.PHONY : src/gui/src/GraphWidget.cpp.o
+
+src/gui/src/GraphWidget.i: src/gui/src/GraphWidget.cpp.i
+.PHONY : src/gui/src/GraphWidget.i
+
+# target to preprocess a source file
+src/gui/src/GraphWidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku-gui.dir/build.make CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.i
+.PHONY : src/gui/src/GraphWidget.cpp.i
+
+src/gui/src/GraphWidget.s: src/gui/src/GraphWidget.cpp.s
+.PHONY : src/gui/src/GraphWidget.s
+
+# target to generate assembly for a file
+src/gui/src/GraphWidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku-gui.dir/build.make CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.s
+.PHONY : src/gui/src/GraphWidget.cpp.s
+
 src/gui/src/MainWindow.o: src/gui/src/MainWindow.cpp.o
 .PHONY : src/gui/src/MainWindow.o
 
@@ -751,6 +775,9 @@ help:
 	@echo "... src/gui/src/BoardWidget.o"
 	@echo "... src/gui/src/BoardWidget.i"
 	@echo "... src/gui/src/BoardWidget.s"
+	@echo "... src/gui/src/GraphWidget.o"
+	@echo "... src/gui/src/GraphWidget.i"
+	@echo "... src/gui/src/GraphWidget.s"
 	@echo "... src/gui/src/MainWindow.o"
 	@echo "... src/gui/src/MainWindow.i"
 	@echo "... src/gui/src/MainWindow.s"

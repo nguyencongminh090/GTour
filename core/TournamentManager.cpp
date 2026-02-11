@@ -255,21 +255,43 @@ void TournamentManager::updateBoardSnapshot(const Position& pos)
 void TournamentManager::thread_start(Worker *w)
 {
     std::string opening_str, messages;
+    size_t      idx = 0, count = 0;     // game idx and count (shared across workers)
     Job         job   = {};
     Engine engines[2] = {{w, options.debug, !options.msg.empty() ? &messages : nullptr},
                          {w, options.debug, !options.msg.empty() ? &messages : nullptr}};
     
-    // Set up message forwarding to GUI log
+    // Set up message forwarding to GUI log and eval handling
     for (int i = 0; i < 2; i++) {
         Engine* eng = &engines[i];
         eng->onMessage = [this, eng](const std::string& msg) {
             addLog(eng->name + ": " + msg);
         };
+        eng->onInfo = [this, eng, &job, &idx, &engines](const Info& info, int ply) {
+            // Calculate winrate
+            double winrate = 0.5;
+            if (abs(info.score) > 20000) { // Mate
+                winrate = (info.score > 0) ? 1.0 : 0.0;
+            } else {
+                // Sigmoid: 1 / (1 + e^(-x/200))
+                winrate = 1.0 / (1.0 + std::exp(-info.score / 200.0));
+            }
+            
+            if (this->onEngineEval) {
+                EvalInfo ei;
+                ei.gameIdx = idx;
+                ei.moveIdx = ply;
+                // Identify engine index (0 or 1) in the current game context
+                ei.engineIdx = (eng == &engines[0]) ? 0 : 1;
+                ei.score = info.score;
+                ei.isMate = abs(info.score) > 20000;
+                ei.winrate = winrate;
+                this->onEngineEval(ei);
+            }
+        };
     }
 
     int    ei[2]      = {-1, -1};  // eo[ei[0]] plays eo[ei[1]]: initialize with invalid
                                    // values to start
-    size_t idx = 0, count = 0;     // game idx and count (shared across workers)
 
     while (jq->pop(job, idx, count)) {
         // Clear all previous engine messages and write game index

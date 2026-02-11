@@ -4,6 +4,8 @@
 #include <vector>
 #include "BoardWidget.h"
 #include "OpeningCreatorPanel.h"
+#include "GraphWidget.h"
+#include "TournamentManager.h"
 #include "options.h"
 
 class MainWindow : public Gtk::ApplicationWindow
@@ -21,7 +23,7 @@ protected:
     void update_ui_state(bool is_running);
     bool on_timeout_update();
     void start_tournament(const Options& opts, const std::vector<EngineOptions>& eos);
-    void update_results_table(const std::vector<struct PairResult>& results);
+    void update_results_table(const std::vector<PairResult>& results);
     void show_tournament_panel();
     void show_opening_panel();
 
@@ -45,6 +47,10 @@ protected:
     Gtk::ScrolledWindow m_ScrollLog;
     Gtk::TextView m_TextViewLog;
     Glib::RefPtr<Gtk::TextBuffer> m_LogBuffer;
+
+    // Graph
+    GraphWidget m_GraphWidget;
+    void on_engine_eval(const TournamentManager::EvalInfo& info);
 
     // Results table
     Gtk::Frame m_FrameResults{"Results"};

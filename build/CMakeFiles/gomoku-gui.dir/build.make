@@ -125,10 +125,24 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/BoardWidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gomoku-gui.dir/src/gui/src/BoardWidget.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/src/BoardWidget.cpp -o CMakeFiles/gomoku-gui.dir/src/gui/src/BoardWidget.cpp.s
 
+CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o: CMakeFiles/gomoku-gui.dir/flags.make
+CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o: /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/src/GraphWidget.cpp
+CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o: CMakeFiles/gomoku-gui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o -MF CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o.d -o CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o -c /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/src/GraphWidget.cpp
+
+CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/src/GraphWidget.cpp > CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.i
+
+CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/src/GraphWidget.cpp -o CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.s
+
 CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o: CMakeFiles/gomoku-gui.dir/flags.make
 CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o: /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/src/OpeningCreatorPanel.cpp
 CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o: CMakeFiles/gomoku-gui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o -MF CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o.d -o CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o -c /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/src/OpeningCreatorPanel.cpp
 
 CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.i: cmake_force
@@ -145,6 +159,7 @@ gomoku__gui_OBJECTS = \
 "CMakeFiles/gomoku-gui.dir/src/gui/src/MainWindow.cpp.o" \
 "CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o" \
 "CMakeFiles/gomoku-gui.dir/src/gui/src/BoardWidget.cpp.o" \
+"CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o" \
 "CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o"
 
 # External object files for target gomoku-gui
@@ -154,11 +169,12 @@ gomoku-gui: CMakeFiles/gomoku-gui.dir/src/gui/main.cpp.o
 gomoku-gui: CMakeFiles/gomoku-gui.dir/src/gui/src/MainWindow.cpp.o
 gomoku-gui: CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o
 gomoku-gui: CMakeFiles/gomoku-gui.dir/src/gui/src/BoardWidget.cpp.o
+gomoku-gui: CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o
 gomoku-gui: CMakeFiles/gomoku-gui.dir/src/gui/src/OpeningCreatorPanel.cpp.o
 gomoku-gui: CMakeFiles/gomoku-gui.dir/build.make
 gomoku-gui: libgomoku_core.a
 gomoku-gui: CMakeFiles/gomoku-gui.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable gomoku-gui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable gomoku-gui"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gomoku-gui.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

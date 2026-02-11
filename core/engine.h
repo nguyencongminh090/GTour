@@ -46,6 +46,9 @@ public:
     // Callback for engine messages (PV, depth, eval, etc.)
     std::function<void(const std::string&)> onMessage = nullptr;
 
+    // Callback for parsed info
+    std::function<void(const Info&, int ply)> onInfo = nullptr;
+
     void start(const char *cmd, const char *name, int64_t tolerance);
     void terminate(bool force = false);
 
@@ -87,6 +90,6 @@ private:
 
     void       spawn(const char *cwd, const char *run, char **argv, bool readStdErr);
     void       parse_about(const char *fallbackName);
-    OutputType process_common_output(const char *line, const char *&tail_out);
+    OutputType process_common_output(const char *line, const char *&tail_out, int ply = -1);
     void       parse_thinking_message(const char *line, Info &info);
 };

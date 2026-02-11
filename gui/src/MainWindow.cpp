@@ -58,6 +58,10 @@ MainWindow::MainWindow()
     auto sep = Gtk::make_managed<Gtk::Separator>();
     m_ControlBox.append(*sep);
 
+    // Graph
+    m_GraphWidget.set_margin_bottom(10);
+    m_ControlBox.append(m_GraphWidget);
+
     m_ProgressBar.set_show_text(true);
     m_ProgressBar.set_visible(false);
     m_ControlBox.append(m_ProgressBar);
@@ -210,8 +214,11 @@ void MainWindow::start_tournament(const Options& opts, const std::vector<EngineO
     m_ResultsStore->clear();
 
     m_Manager = std::make_unique<TournamentManager>();
+    m_Manager->onEngineEval = sigc::mem_fun(*this, &MainWindow::on_engine_eval);
     m_Manager->init(opts, eos);
     m_Manager->start();
+    
+    m_GraphWidget.clear();
 
     m_LabelStatus.set_text("Tournament Running...");
     m_ProgressBar.set_fraction(0.0);
@@ -293,4 +300,12 @@ void MainWindow::update_results_table(const std::vector<PairResult>& results)
         row[m_ResultColumns.col_score]  = Glib::ustring(buf);
         row[m_ResultColumns.col_total]  = pr.total;
     }
+}
+
+void MainWindow::on_engine_eval(const TournamentManager::EvalInfo& info)
+{
+    // Dispatch to GUI thread
+    Glib::signal_idle().connect_once([this, info]() {
+        m_GraphWidget.push_data(info.engineIdx, info.moveIdx, info.winrate);
+    });
 }

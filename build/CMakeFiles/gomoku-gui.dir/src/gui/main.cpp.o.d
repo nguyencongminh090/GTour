@@ -1597,8 +1597,24 @@ CMakeFiles/gomoku-gui.dir/src/gui/main.cpp.o: \
  /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/BoardState.h \
  /usr/include/c++/13/cstdint \
  /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/include/OpeningCreatorPanel.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/include/GraphWidget.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/TournamentManager.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/engine.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/extern/lz4frame.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/game.h \
  /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/options.h \
  /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/position.h \
  /usr/include/c++/13/cassert /usr/include/assert.h \
  /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/sprt.h \
- /usr/include/c++/13/cinttypes /usr/include/inttypes.h
+ /usr/include/c++/13/cinttypes /usr/include/inttypes.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/jobs.h \
+ /usr/include/c++/13/mutex /usr/include/c++/13/bits/chrono.h \
+ /usr/include/c++/13/ratio /usr/include/c++/13/bits/parse_numbers.h \
+ /usr/include/c++/13/bits/std_mutex.h \
+ /usr/include/c++/13/bits/unique_lock.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/openings.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/seqwriter.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/util.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/workers.h \
+ /usr/include/c++/13/thread /usr/include/c++/13/bits/std_thread.h \
+ /usr/include/c++/13/bits/this_thread_sleep.h
