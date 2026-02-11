@@ -17,6 +17,7 @@
 #include <atomic>
 #include <mutex>
 #include <functional>
+#include <map>
 
 // Per-pair result snapshot for GUI
 struct PairResult {
@@ -24,6 +25,14 @@ struct PairResult {
     int wins = 0, losses = 0, draws = 0;
     double score = 0.0;
     int total = 0;
+};
+
+// Thread-safe progress info snapshot
+struct WorkerStatus {
+    int workerId;
+    size_t gameIdx;
+    std::string engineName;
+    int64_t timeLeft; // milliseconds
 };
 
 // Thread-safe progress info snapshot
@@ -35,6 +44,7 @@ struct TournamentProgress {
     BoardState  board;           // snapshot of the current game board
     std::vector<std::string> logLines;   // new log lines since last poll
     std::vector<PairResult>  pairResults; // current standings
+    std::vector<WorkerStatus> workerStatuses; // status of active workers
 };
 
 class TournamentManager {
@@ -98,4 +108,5 @@ private:
     std::string                lastResult;
     BoardState                 currentBoard;
     std::vector<std::string>   logBuffer;    // pending log lines for GUI
+    std::map<int, size_t>      workerGameIndices; // active game index per worker
 };

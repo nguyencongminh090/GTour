@@ -78,7 +78,7 @@ void GraphWidget::on_motion(double x, double y)
     for (const auto& kv : m_Data) {
         if (!kv.second.empty()) maxMove = std::max(maxMove, kv.second.back().moveIdx);
     }
-    if (maxMove < 10) maxMove = 10;
+    if (maxMove < 20) maxMove = 20;
     
     // Margins
     const double padLeft = 30, padRight = 10, padTop = 10, padBottom = 20;

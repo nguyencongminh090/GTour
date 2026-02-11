@@ -183,9 +183,29 @@ TournamentProgress TournamentManager::getProgress() const
         p.lastResult = lastResult;
         p.board = currentBoard;
         // Drain log buffer (move lines out)
-        p.logLines = std::move(const_cast<std::vector<std::string>&>(logBuffer));
+    p.logLines = std::move(const_cast<std::vector<std::string>&>(logBuffer));
         const_cast<std::vector<std::string>&>(logBuffer).clear();
+    } // unlock progressMtx
+
+    // Populate worker statuses
+    int64_t now = system_msec();
+    for (auto* w : workers) {
+        std::lock_guard<std::mutex> lock(w->deadline.mtx);
+        if (w->deadline.set) {
+             WorkerStatus ws;
+             ws.workerId = w->id;
+             {
+                 std::lock_guard<std::mutex> plock(progressMtx);
+                 if (workerGameIndices.count(w->id)) ws.gameIdx = workerGameIndices.at(w->id);
+                 else ws.gameIdx = 0;
+             }
+             ws.engineName = w->deadline.engineName;
+             ws.timeLeft = w->deadline.timeLimit - now;
+             if (ws.timeLeft < 0) ws.timeLeft = 0;
+             p.workerStatuses.push_back(ws);
+        }
     }
+
     p.pairResults = buildPairResults();
     p.isRunning = running;
     return p;
@@ -294,6 +314,11 @@ void TournamentManager::thread_start(Worker *w)
                                    // values to start
 
     while (jq->pop(job, idx, count)) {
+        {
+            std::lock_guard<std::mutex> lock(progressMtx);
+            workerGameIndices[w->id] = idx + 1; // 1-based index for display
+        }
+
         // Clear all previous engine messages and write game index
         if (!options.msg.empty()) {
             messages = "----------------------------------------\n";

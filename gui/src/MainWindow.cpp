@@ -1,6 +1,8 @@
 #include "MainWindow.h"
 #include "TournamentDialog.h"
 #include "TournamentManager.h"
+#include <iomanip>
+#include <sstream>
 
 MainWindow::MainWindow()
 : m_VBox(Gtk::Orientation::VERTICAL)
@@ -241,6 +243,19 @@ bool MainWindow::on_timeout_update()
             m_ProgressBar.set_text(
                 std::to_string(progress.gamesCompleted) + " / " + std::to_string(progress.gamesTotal)
             );
+        }
+
+        if (!progress.workerStatuses.empty()) {
+            // Show status of the first active worker (for now assumes 1 game or shows first)
+            const auto& ws = progress.workerStatuses[0];
+            double sec = ws.timeLeft / 1000.0;
+            std::stringstream ss;
+            ss << "Game " << ws.gameIdx << ": " << ws.engineName << " thinking (" << std::fixed << std::setprecision(1) << sec << "s)";
+            m_LabelStatus.set_text(ss.str());
+        } else if (progress.isRunning) {
+            m_LabelStatus.set_text("Tournament Running...");
+        } else {
+             m_LabelStatus.set_text("Tournament Stopped");
         }
 
         if (!progress.lastResult.empty()) {
