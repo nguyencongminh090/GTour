@@ -89,7 +89,29 @@ void TournamentManager::start()
 
 void TournamentManager::stop()
 {
-    // Join threads
+    if (!running) return;
+    
+    // 1. Signal all threads to abort
+    abortFlag.store(true);
+    
+    // 2. Prevent any new jobs from being popped
+    if (jq) jq->stop();
+    
+    // 3. Force-terminate engine processes to unblock any blocking reads.
+    //    Worker threads are stuck in Engine::readln() -> fgets() waiting for
+    //    engine output. Killing the engine process closes the pipe, causing
+    //    fgets() to return NULL (EOF), which unblocks the thread.
+    //    We access workers directly since they are only freed in this method.
+    for (auto* worker : workers) {
+        // Fire the deadline callback if set — this calls engine.terminate(true)
+        // which sends SIGTERM to the engine process
+        worker->deadline_callback_once();
+    }
+    
+    // 4. Join threads — now they can exit because:
+    //    - Engine pipes are broken (reads return EOF)
+    //    - jq->pop() returns false (no more jobs)
+    //    - abortFlag is set (checked in game loop)
     for (std::thread &th : threads) {
         if (th.joinable()) th.join();
     }
@@ -110,6 +132,7 @@ void TournamentManager::stop()
     
     initialized = false;
     running = false;
+    abortFlag.store(false);
 }
 
 void TournamentManager::close_sample_file(bool signal_exit)
@@ -425,6 +448,9 @@ void TournamentManager::thread_start(Worker *w)
                 info.whiteTime = wTime;
             }
         };
+
+        // Allow game loop to exit early when stop is requested
+        game.shouldAbort = [this]() { return abortFlag.load(); };
 
         {
             std::string msg = format("[%d] Started game %zu of %zu (%s vs %s)",

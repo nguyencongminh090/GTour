@@ -70,6 +70,8 @@ public:
     std::function<void(const Position&)> onMove;
     // Optional callback for time updates (blackTime, whiteTime)
     std::function<void(int64_t, int64_t)> onTimeUpdate;
+    // Optional callback to check if game should be aborted
+    std::function<bool()> shouldAbort;
 
     Game(int round, int game, Worker *worker);
 

@@ -3,6 +3,7 @@
 #include "TournamentManager.h"
 #include <iomanip>
 #include <sstream>
+#include <thread>
 
 MainWindow::MainWindow()
 : m_VBox(Gtk::Orientation::VERTICAL)
@@ -211,10 +212,19 @@ MainWindow::MainWindow()
 void MainWindow::on_action_stop()
 {
     if (m_Manager) {
-        m_Manager->stop();
-        m_LabelStatus.set_text("Tournament Stopped by User");
+        // Update UI immediately (don't wait for stop to finish)
+        m_LabelStatus.set_text("Stopping Tournament...");
         update_ui_state(false);
         m_TimerConnection.disconnect();
+
+        // Run stop() in a background thread to avoid blocking the GTK main loop.
+        // stop() sends SIGTERM to engines, waits for threads to join, then cleans up.
+        auto* mgr = m_Manager.get();
+        std::thread([mgr]() {
+            mgr->stop();
+        }).detach();
+
+        m_LabelStatus.set_text("Tournament Stopped by User");
     }
 }
 

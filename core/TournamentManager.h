@@ -107,6 +107,7 @@ private:
     
     bool                       initialized;
     bool                       running;
+    std::atomic<bool>          abortFlag{false};
 
     // Progress tracking (thread-safe)
     mutable std::mutex         progressMtx;

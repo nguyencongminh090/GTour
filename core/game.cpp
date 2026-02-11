@@ -241,6 +241,12 @@ int Game::play(const Options       &o,
             break;
         }
 
+        // Check if game should be aborted (e.g. tournament stop requested)
+        if (shouldAbort && shouldAbort()) {
+            state = STATE_CRASHED;  // treat as abnormal termination
+            break;
+        }
+
         // Apply force draw adjudication rule
         if (o.forceDrawAfter && pos[ply].get_move_count() >= o.forceDrawAfter) {
             state = STATE_DRAW_ADJUDICATION;
