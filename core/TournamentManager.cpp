@@ -193,13 +193,37 @@ TournamentProgress TournamentManager::getProgress() const
         std::lock_guard<std::mutex> lock(w->deadline.mtx);
         if (w->deadline.set) {
              WorkerStatus ws;
-             ws.workerId = w->id;
-             {
-                 std::lock_guard<std::mutex> plock(progressMtx);
-                 if (workerGameIndices.count(w->id)) ws.gameIdx = workerGameIndices.at(w->id);
-                 else ws.gameIdx = 0;
-             }
-             ws.engineName = w->deadline.engineName;
+              ws.workerId = w->id;
+              ws.engineName = w->deadline.engineName;
+              {
+                  std::lock_guard<std::mutex> plock(progressMtx);
+                  if (workerGameInfos.count(w->id)) {
+                      const auto& info = workerGameInfos.at(w->id);
+                      ws.gameIdx = info.idx;
+                      ws.blackName = info.blackName;
+                      ws.whiteName = info.whiteName;
+                      ws.isBlackActive = (ws.engineName == ws.blackName);
+                      
+                      // Helper to calc active time from deadline
+                      auto calcActive = [&]() {
+                          int64_t tl = w->deadline.timeLimit - now;
+                          return (tl < 0) ? 0 : tl;
+                      };
+
+                      if (ws.isBlackActive) {
+                          ws.blackTime = calcActive();
+                          ws.whiteTime = info.whiteTime;
+                      } else {
+                          ws.blackTime = info.blackTime;
+                          ws.whiteTime = calcActive();
+                      }
+                  } else {
+                      ws.gameIdx = 0;
+                      ws.isBlackActive = true; 
+                      ws.blackTime = 0;
+                      ws.whiteTime = 0;
+                  }
+              }
              ws.timeLeft = w->deadline.timeLimit - now;
              if (ws.timeLeft < 0) ws.timeLeft = 0;
              p.workerStatuses.push_back(ws);
@@ -314,10 +338,27 @@ void TournamentManager::thread_start(Worker *w)
                                    // values to start
 
     while (jq->pop(job, idx, count)) {
-        {
-            std::lock_guard<std::mutex> lock(progressMtx);
-            workerGameIndices[w->id] = idx + 1; // 1-based index for display
-        }
+        // Determine names for this game
+        // job.pair is index into eo? No, job has ei[0] and ei[1].
+        // thread_start logic: ei[0/1] are indices.
+        // We update ei[] inside the loop.
+        // But pop() gives us the job.
+        
+        // Wait, we need to know who is black and white BEFORE we start the game logic?
+        // In the loop below:
+        // const int blackIdx = color ^ job.reverse;
+        // const int whiteIdx = oppositeColor((Color)blackIdx);
+        // But color is always BLACK initially?
+        // Yes: Color color = BLACK;
+        
+        // So blackIdx = BLACK ^ job.reverse = 0 ^ reverse = reverse?
+        // if reverse=0, blackIdx=0. eo[ei[0]] is Black.
+        // if reverse=1, blackIdx=1. eo[ei[1]] is Black.
+        
+        // However, ei[] are not updated yet until we check job.ei != ei.
+        // But we have job.ei right here.
+        
+        // workerGameInfos will be populated after load_opening (below) where actual Black/White is known
 
         // Clear all previous engine messages and write game index
         if (!options.msg.empty()) {
@@ -361,8 +402,29 @@ void TournamentManager::thread_start(Worker *w)
             updateBoardSnapshot(p);
         };
 
+        // Determine actual Black/White based on opening position + reverse flag
         const int blackIdx = color ^ job.reverse;
         const int whiteIdx = oppositeColor((Color)blackIdx);
+
+        // Now that the opening is loaded, populate workerGameInfos with correct names
+        {
+            std::lock_guard<std::mutex> lock(progressMtx);
+            std::string bName = engines[blackIdx].name;
+            std::string wName = engines[whiteIdx].name;
+            workerGameInfos[w->id] = {idx + 1, bName, wName,
+                                      eo[ei[blackIdx]].timeoutMatch,
+                                      eo[ei[whiteIdx]].timeoutMatch};
+        }
+
+        // Set time update callback to track persistent times
+        game.onTimeUpdate = [this, w](int64_t bTime, int64_t wTime) {
+            std::lock_guard<std::mutex> lock(progressMtx);
+            if (workerGameInfos.count(w->id)) {
+                auto& info = workerGameInfos.at(w->id);
+                info.blackTime = bTime;
+                info.whiteTime = wTime;
+            }
+        };
 
         {
             std::string msg = format("[%d] Started game %zu of %zu (%s vs %s)",

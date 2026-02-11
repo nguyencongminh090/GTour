@@ -210,6 +210,16 @@ int Game::play(const Options       &o,
 
     // the starting position has been added at load_fen()
 
+    // Determine which eo/timeLeft index corresponds to Black.
+    // engines are loaded with reverse: engines[i] = eo[reverse ? 1-i : i]
+    // eo index for Black engine = pos[0].get_turn() (works for any opening stone count)
+    const int blackEo = pos[0].get_turn();
+
+    // Report initial time
+    if (onTimeUpdate) {
+        onTimeUpdate(timeLeft[blackEo], timeLeft[1 - blackEo]);
+    }
+
     for (ply = 0;; ei = (1 - ei), ply++) {
         if (played != NONE_MOVE) {
             pos[ply].move_with_copy(pos[ply - 1], played);
@@ -242,6 +252,9 @@ int Game::play(const Options       &o,
 
         // output game/turn info
         gomocup_turn_info_command(*eo[ei], timeLeft[ei], engines[ei]);
+
+        // Report time update
+        if (onTimeUpdate) onTimeUpdate(timeLeft[blackEo], timeLeft[1 - blackEo]);
 
         // trigger think!
         if (pos[ply].get_move_count() == 0) {
@@ -738,7 +751,7 @@ void Game::export_samples_binpack(FILE *out, LZ4F_compressionContext_t lz4Ctx) c
                                          .isPass   = 0,
                                          .reserved = 0,
                                          .move     = POS_RAW(CoordX(p), CoordY(p)),
-                                         .eval     = isFirstMove ? samples[0].eval : 0});
+                                         .eval     = (int16_t)(isFirstMove ? samples[0].eval : 0)});
         }
 
         Pos p = PosFromMove(samples[i].move);

@@ -41,6 +41,14 @@ protected:
     Gtk::Label m_LabelLastResult;
     Gtk::ProgressBar m_ProgressBar;
     Gtk::Button m_BtnStop;
+    
+    // Player Bar
+    Gtk::Box m_PlayerBar;
+    Gtk::Frame m_FrameBlack, m_FrameWhite;
+    Gtk::Box m_BoxBlack, m_BoxWhite; // Inside frames
+    Gtk::Label m_LabelBlackName, m_LabelWhiteName;
+    Gtk::Label m_LabelBlackTime, m_LabelWhiteTime;
+    Gtk::Label m_LabelBlackSymbol, m_LabelWhiteSymbol;
 
     // Log view
     Gtk::Frame m_FrameLog{"Log"};

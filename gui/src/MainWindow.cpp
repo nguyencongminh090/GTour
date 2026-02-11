@@ -114,6 +114,72 @@ MainWindow::MainWindow()
     m_ScrollLog.set_vexpand(true);
     m_ScrollLog.set_min_content_height(120);
     m_FrameLog.set_child(m_ScrollLog);
+    
+    // Player Bar
+    m_PlayerBar.set_spacing(10);
+    m_PlayerBar.set_margin_top(5);
+    m_PlayerBar.set_margin_bottom(5);
+    m_PlayerBar.set_margin_start(5);
+    m_PlayerBar.set_margin_end(5);
+
+    // Black Side
+    m_BoxBlack.set_orientation(Gtk::Orientation::HORIZONTAL);
+    m_BoxBlack.set_spacing(10);
+    m_BoxBlack.set_margin_start(10);
+    m_BoxBlack.set_margin_end(10);
+    m_BoxBlack.set_margin_top(5);
+    m_BoxBlack.set_margin_bottom(5);
+    
+    // Black Side (Time Name Symbol)
+    m_LabelBlackTime.set_text("--:--");
+    m_LabelBlackTime.set_halign(Gtk::Align::START);
+    m_LabelBlackTime.set_width_chars(6);
+
+    m_LabelBlackName.set_text("Black");
+    m_LabelBlackName.set_halign(Gtk::Align::END); // Name aligns to right (near symbol) or center?
+    // Actually, if Time is Left, Name should be Center/Right?
+    // Let's make Name fill space.
+    m_LabelBlackName.set_halign(Gtk::Align::FILL);
+    m_LabelBlackName.set_hexpand(true);
+    
+    m_LabelBlackSymbol.set_markup("<span size='large'>●</span>");
+    
+    m_BoxBlack.append(m_LabelBlackTime);
+    m_BoxBlack.append(m_LabelBlackName);
+    m_BoxBlack.append(m_LabelBlackSymbol);
+    m_FrameBlack.set_child(m_BoxBlack);
+    m_FrameBlack.set_hexpand(true);
+    
+    // White Side (Symmetric: Time Name Symbol)
+    m_BoxWhite.set_orientation(Gtk::Orientation::HORIZONTAL);
+    m_BoxWhite.set_spacing(10);
+    m_BoxWhite.set_margin_start(10);
+    m_BoxWhite.set_margin_end(10);
+    m_BoxWhite.set_margin_top(5);
+    m_BoxWhite.set_margin_bottom(5);
+
+    // White Side (Symbol Name Time)
+    m_LabelWhiteSymbol.set_markup("<span size='large'>○</span>");
+
+    m_LabelWhiteName.set_text("White");
+    m_LabelWhiteName.set_halign(Gtk::Align::FILL);
+    m_LabelWhiteName.set_hexpand(true);
+    
+    m_LabelWhiteTime.set_text("--:--");
+    m_LabelWhiteTime.set_halign(Gtk::Align::END);
+    m_LabelWhiteTime.set_width_chars(6);
+
+    m_BoxWhite.append(m_LabelWhiteSymbol);
+    m_BoxWhite.append(m_LabelWhiteName);
+    m_BoxWhite.append(m_LabelWhiteTime);
+    m_FrameWhite.set_child(m_BoxWhite);
+    m_FrameWhite.set_hexpand(true);
+
+    m_PlayerBar.append(m_FrameBlack);
+    m_PlayerBar.append(m_FrameWhite);
+
+    m_VBox.append(m_PlayerBar);
+
     m_FrameLog.set_visible(false);
     m_FrameLog.set_vexpand(true);
     m_ControlBox.append(m_FrameLog);
@@ -246,16 +312,36 @@ bool MainWindow::on_timeout_update()
         }
 
         if (!progress.workerStatuses.empty()) {
-            // Show status of the first active worker (for now assumes 1 game or shows first)
+            // Show status of the first active worker
             const auto& ws = progress.workerStatuses[0];
-            double sec = ws.timeLeft / 1000.0;
-            std::stringstream ss;
-            ss << "Game " << ws.gameIdx << ": " << ws.engineName << " thinking (" << std::fixed << std::setprecision(1) << sec << "s)";
-            m_LabelStatus.set_text(ss.str());
-        } else if (progress.isRunning) {
-            m_LabelStatus.set_text("Tournament Running...");
-        } else {
-             m_LabelStatus.set_text("Tournament Stopped");
+            
+            int64_t timeMs;
+            auto formatTime = [](int64_t ms) {
+                if (ms < 0) ms = 0;
+                int totSec = ms / 1000;
+                int min = totSec / 60;
+                int sec = totSec % 60;
+                std::stringstream ss;
+                ss << std::setfill('0') << std::setw(2) << min << ":" << std::setw(2) << sec;
+                return ss.str();
+            };
+            
+            std::string bTimeStr = formatTime(ws.blackTime);
+            std::string wTimeStr = formatTime(ws.whiteTime);
+
+            if (ws.isBlackActive) {
+                m_LabelBlackName.set_markup("<b>" + Glib::Markup::escape_text(ws.blackName) + "</b>");
+                m_LabelBlackTime.set_markup("<b>" + bTimeStr + "</b>");
+                
+                m_LabelWhiteName.set_text(ws.whiteName);
+                m_LabelWhiteTime.set_text(wTimeStr);
+            } else {
+                m_LabelWhiteName.set_markup("<b>" + Glib::Markup::escape_text(ws.whiteName) + "</b>");
+                m_LabelWhiteTime.set_markup("<b>" + wTimeStr + "</b>");
+                
+                m_LabelBlackName.set_text(ws.blackName);
+                m_LabelBlackTime.set_text(bTimeStr);
+            }
         }
 
         if (!progress.lastResult.empty()) {

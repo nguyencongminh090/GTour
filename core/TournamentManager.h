@@ -31,8 +31,13 @@ struct PairResult {
 struct WorkerStatus {
     int workerId;
     size_t gameIdx;
-    std::string engineName;
-    int64_t timeLeft; // milliseconds
+    std::string engineName; // The engine currently thinking
+    std::string blackName;
+    std::string whiteName;
+    bool isBlackActive;
+    int64_t timeLeft; // milliseconds (for backward compatibility/active player)
+    int64_t blackTime;
+    int64_t whiteTime;
 };
 
 // Thread-safe progress info snapshot
@@ -108,5 +113,12 @@ private:
     std::string                lastResult;
     BoardState                 currentBoard;
     std::vector<std::string>   logBuffer;    // pending log lines for GUI
-    std::map<int, size_t>      workerGameIndices; // active game index per worker
+    struct ActiveGameInfo {
+        size_t idx;
+        std::string blackName;
+        std::string whiteName;
+        int64_t blackTime = 0;
+        int64_t whiteTime = 0;
+    };
+    std::map<int, ActiveGameInfo> workerGameInfos; // active game info per worker
 };
