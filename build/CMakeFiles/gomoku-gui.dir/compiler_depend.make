@@ -4,6 +4,7 @@
 CMakeFiles/gomoku-gui.dir/src/gui/main.cpp.o: /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/main.cpp \
   /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/BoardState.h \
   /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/TournamentManager.h \
+  /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/WebServer.h \
   /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/engine.h \
   /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/extern/lz4frame.h \
   /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/game.h \
@@ -5149,6 +5150,7 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/GraphWidget.cpp.o: /media/ngmint/Data/Prog
 CMakeFiles/gomoku-gui.dir/src/gui/src/MainWindow.cpp.o: /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/src/MainWindow.cpp \
   /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/BoardState.h \
   /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/TournamentManager.h \
+  /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/WebServer.h \
   /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/engine.h \
   /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/extern/lz4frame.h \
   /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/game.h \
@@ -11079,6 +11081,10 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 
 /usr/include/gtk-4.0/gtk/gtktypes.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+
+/usr/include/gtk-4.0/gtk/gtktypebuiltins.h:
+
 /usr/include/c++/13/bits/allocated_ptr.h:
 
 /usr/include/gtk-4.0/gtk/gtkprintdialog.h:
@@ -11407,8 +11413,6 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 
 /usr/include/giomm-2.68/giomm/tcpwrapperconnection.h:
 
-/usr/include/glib-2.0/gio/gsocketaddressenumerator.h:
-
 /usr/include/gtk-4.0/gtk/gtkconstraintguide.h:
 
 /usr/include/giomm-2.68/giomm/filteroutputstream.h:
@@ -11508,12 +11512,6 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 /usr/include/gtkmm-4.0/gtkmm/printcontext.h:
 
 /usr/include/glibmm-2.68/glibmm/class.h:
-
-/usr/lib/x86_64-linux-gnu/gtkmm-4.0/include/gdkmmconfig.h:
-
-/usr/include/giomm-2.68/giomm/tlsserverconnection.h:
-
-/usr/include/giomm-2.68/giomm/dbusaddress.h:
 
 /usr/include/giomm-2.68/giomm/dbusactiongroup.h:
 
@@ -11620,6 +11618,12 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 /usr/include/x86_64-linux-gnu/bits/uio_lim.h:
 
 /usr/include/c++/13/ext/alloc_traits.h:
+
+/usr/include/gtkmm-4.0/gtkmm/droptarget.h:
+
+/usr/include/freetype2/freetype/fttypes.h:
+
+/usr/include/glib-2.0/glib.h:
 
 /usr/include/giomm-2.68/giomm/dbuswatchname.h:
 
@@ -11813,15 +11817,23 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 
 /usr/include/glib-2.0/gio/gnetworkservice.h:
 
-/usr/include/giomm-2.68/giomm/emblemedicon.h:
+/usr/include/glib-2.0/gio/gdbusobjectmanagerclient.h:
 
-/usr/include/pango-1.0/pango/pango-fontmap.h:
+/usr/include/glib-2.0/gio/gfileiostream.h:
 
-/usr/include/glib-2.0/glib/gmessages.h:
+/usr/include/c++/13/bits/gslice.h:
 
-/usr/include/gtk-4.0/gdk/gdktexture.h:
+/usr/include/glib-2.0/glib/glib-autocleanups.h:
 
-/usr/include/c++/13/bits/postypes.h:
+/usr/include/gtkmm-4.0/gtkmm/shortcut.h:
+
+/usr/include/giomm-2.68/giomm/bufferedoutputstream.h:
+
+/usr/include/gtk-4.0/gtk/print/gtkprintsettings.h:
+
+/usr/include/giomm-2.68/giomm/subprocesslauncher.h:
+
+/usr/include/glib-2.0/gobject/gbindinggroup.h:
 
 /usr/include/gtk-4.0/gtk/deprecated/gtktreesortable.h:
 
@@ -11969,6 +11981,20 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 
 /usr/include/fontconfig/fontconfig.h:
 
+/usr/include/giomm-2.68/giomm/emblemedicon.h:
+
+/usr/include/pango-1.0/pango/pango-fontmap.h:
+
+/usr/include/glib-2.0/glib/gmessages.h:
+
+/usr/include/gtk-4.0/gdk/gdktexture.h:
+
+/usr/include/c++/13/bits/postypes.h:
+
+/usr/include/c++/13/bits/char_traits.h:
+
+/usr/include/c++/13/bits/valarray_array.h:
+
 /usr/include/sigc++-3.0/sigc++/connection.h:
 
 /usr/include/gtk-4.0/gdk/gdkdrawcontext.h:
@@ -12085,6 +12111,12 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 
 /usr/include/glibmm-2.68/glibmm/utility.h:
 
+/usr/include/gtkmm-4.0/gtkmm/dragicon.h:
+
+/usr/include/c++/13/bits/refwrap.h:
+
+/usr/include/glib-2.0/gio/gdbusactiongroup.h:
+
 /usr/include/gtk-4.0/gtk/gtkdroptarget.h:
 
 /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/game.h:
@@ -12100,34 +12132,6 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 /usr/include/glib-2.0/glib/ghash.h:
 
 /usr/include/gtk-4.0/gtk/gtkbox.h:
-
-/usr/include/glib-2.0/gio/gdbusobjectmanagerclient.h:
-
-/usr/include/glib-2.0/gio/gfileiostream.h:
-
-/usr/include/c++/13/bits/gslice.h:
-
-/usr/include/glib-2.0/glib/glib-autocleanups.h:
-
-/usr/include/gtkmm-4.0/gtkmm/dragicon.h:
-
-/usr/include/glib-2.0/gio/gdbusactiongroup.h:
-
-/usr/include/c++/13/bits/refwrap.h:
-
-/usr/include/gtkmm-4.0/gtkmm/shortcut.h:
-
-/usr/include/giomm-2.68/giomm/bufferedoutputstream.h:
-
-/usr/include/gtk-4.0/gtk/print/gtkprintsettings.h:
-
-/usr/include/giomm-2.68/giomm/subprocesslauncher.h:
-
-/usr/include/glib-2.0/gobject/gbindinggroup.h:
-
-/usr/include/c++/13/bits/char_traits.h:
-
-/usr/include/c++/13/bits/valarray_array.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
@@ -12383,12 +12387,6 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-simple-anim.h:
 
-/usr/include/gtkmm-4.0/gtkmm/droptarget.h:
-
-/usr/include/freetype2/freetype/fttypes.h:
-
-/usr/include/glib-2.0/glib.h:
-
 /usr/include/giomm-2.68/giomm/threadedsocketservice.h:
 
 /usr/include/c++/13/bits/gslice_array.h:
@@ -12434,6 +12432,14 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 /usr/include/sigc++-3.0/sigc++/tuple-utils/tuple_end.h:
 
 /usr/include/freetype2/freetype/ftmoderr.h:
+
+/usr/lib/x86_64-linux-gnu/gtkmm-4.0/include/gdkmmconfig.h:
+
+/usr/include/giomm-2.68/giomm/tlsserverconnection.h:
+
+/usr/include/giomm-2.68/giomm/dbusaddress.h:
+
+/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/WebServer.h:
 
 /usr/include/cairomm-1.16/cairomm/path.h:
 
@@ -12664,6 +12670,8 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 /usr/include/glib-2.0/gio/gfileenumerator.h:
 
 /usr/include/freetype2/freetype/ftsystem.h:
+
+/usr/include/glib-2.0/gio/gsocketaddressenumerator.h:
 
 /usr/include/glib-2.0/gio/gsocketclient.h:
 
@@ -13810,7 +13818,3 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/TournamentDialog.cpp.o: /media/ngmint/Data
 /usr/include/linux/stat.h:
 
 /usr/include/gtk-4.0/gtk/gtktreelistmodel.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
-
-/usr/include/gtk-4.0/gtk/gtktypebuiltins.h:

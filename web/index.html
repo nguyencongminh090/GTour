@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gomoku Tournament Live</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">⬡ Gomoku Live</h1>
+            <span id="connectionStatus" class="status-badge status-connecting">Connecting…</span>
+        </div>
+        <div class="header-right">
+            <div class="progress-info">
+                <span id="progressText">0 / 0 games</span>
+                <div class="progress-bar-track">
+                    <div id="progressBar" class="progress-bar-fill" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-grid">
+        <!-- Left: Board + Players -->
+        <section class="board-section">
+            <!-- Player bar: Black -->
+            <div class="player-bar player-black">
+                <div class="player-stone black-stone"></div>
+                <span id="blackName" class="player-name">Black</span>
+                <span id="blackTimer" class="player-timer">--:--</span>
+                <div id="blackIndicator" class="turn-indicator"></div>
+            </div>
+
+            <!-- Board -->
+            <div class="board-container">
+                <canvas id="boardCanvas"></canvas>
+            </div>
+
+            <!-- Player bar: White -->
+            <div class="player-bar player-white">
+                <div class="player-stone white-stone"></div>
+                <span id="whiteName" class="player-name">White</span>
+                <span id="whiteTimer" class="player-timer">--:--</span>
+                <div id="whiteIndicator" class="turn-indicator"></div>
+            </div>
+
+            <!-- Last result -->
+            <div id="lastResult" class="last-result"></div>
+        </section>
+
+        <!-- Right: Results + Log -->
+        <aside class="sidebar">
+            <!-- Results Table -->
+            <div class="panel results-panel">
+                <h2 class="panel-title">📊 Results</h2>
+                <table id="resultsTable" class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Engine 1</th>
+                            <th>Engine 2</th>
+                            <th>W</th>
+                            <th>L</th>
+                            <th>D</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody">
+                        <tr><td colspan="6" class="empty-state">Waiting for results…</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Move list -->
+            <div class="panel moves-panel">
+                <h2 class="panel-title">🎯 Moves</h2>
+                <div id="moveList" class="move-list">
+                    <span class="empty-state">Waiting for game…</span>
+                </div>
+            </div>
+
+            <!-- Log -->
+            <div class="panel log-panel">
+                <h2 class="panel-title">📝 Log</h2>
+                <div id="logContainer" class="log-container">
+                    <span class="empty-state">Waiting for events…</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <span>Powered by c-gomoku-cli</span>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

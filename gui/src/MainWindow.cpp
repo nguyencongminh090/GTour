@@ -217,10 +217,16 @@ void MainWindow::on_action_stop()
         update_ui_state(false);
         m_TimerConnection.disconnect();
 
-        // Run stop() in a background thread to avoid blocking the GTK main loop.
-        // stop() sends SIGTERM to engines, waits for threads to join, then cleans up.
+        // Run both WebServer and TournamentManager stop in a background thread
+        // to avoid blocking the GTK main loop.
         auto* mgr = m_Manager.get();
-        std::thread([mgr]() {
+        auto* ws  = m_WebServer.release();  // transfer ownership to thread
+        std::thread([mgr, ws]() {
+            // Stop web server first (fast — signals SSE loop to exit)
+            if (ws) {
+                ws->stop();
+                delete ws;
+            }
             mgr->stop();
         }).detach();
 
@@ -296,9 +302,13 @@ void MainWindow::start_tournament(const Options& opts, const std::vector<EngineO
     m_Manager->init(opts, eos);
     m_Manager->start();
     
+    // Start the web server for live viewing
+    m_WebServer = std::make_unique<WebServer>(*m_Manager, 8080);
+    m_WebServer->start();
+    
     m_GraphWidget.clear();
 
-    m_LabelStatus.set_text("Tournament Running...");
+    m_LabelStatus.set_text("Tournament Running — Live at http://localhost:8080");
     m_ProgressBar.set_fraction(0.0);
     m_LabelLastResult.set_visible(false);
     update_ui_state(true);

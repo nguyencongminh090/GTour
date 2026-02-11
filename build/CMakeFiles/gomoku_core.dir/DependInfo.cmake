@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/extern/lz4hc.c" "CMakeFiles/gomoku_core.dir/src/core/extern/lz4hc.c.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/extern/lz4hc.c.o.d"
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/extern/xxhash.c" "CMakeFiles/gomoku_core.dir/src/core/extern/xxhash.c.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/extern/xxhash.c.o.d"
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/TournamentManager.cpp" "CMakeFiles/gomoku_core.dir/src/core/TournamentManager.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/TournamentManager.cpp.o.d"
+  "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/WebServer.cpp" "CMakeFiles/gomoku_core.dir/src/core/WebServer.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/WebServer.cpp.o.d"
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/engine.cpp" "CMakeFiles/gomoku_core.dir/src/core/engine.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/engine.cpp.o.d"
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/game.cpp" "CMakeFiles/gomoku_core.dir/src/core/game.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/game.cpp.o.d"
   "/media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/jobs.cpp" "CMakeFiles/gomoku_core.dir/src/core/jobs.cpp.o" "gcc" "CMakeFiles/gomoku_core.dir/src/core/jobs.cpp.o.d"

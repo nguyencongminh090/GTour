@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/gomoku_core.dir/src/core/TournamentManager.cpp.o"
   "CMakeFiles/gomoku_core.dir/src/core/TournamentManager.cpp.o.d"
+  "CMakeFiles/gomoku_core.dir/src/core/WebServer.cpp.o"
+  "CMakeFiles/gomoku_core.dir/src/core/WebServer.cpp.o.d"
   "CMakeFiles/gomoku_core.dir/src/core/engine.cpp.o"
   "CMakeFiles/gomoku_core.dir/src/core/engine.cpp.o.d"
   "CMakeFiles/gomoku_core.dir/src/core/extern/lz4.c.o"

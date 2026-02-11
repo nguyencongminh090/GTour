@@ -227,6 +227,30 @@ src/core/TournamentManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku_core.dir/build.make CMakeFiles/gomoku_core.dir/src/core/TournamentManager.cpp.s
 .PHONY : src/core/TournamentManager.cpp.s
 
+src/core/WebServer.o: src/core/WebServer.cpp.o
+.PHONY : src/core/WebServer.o
+
+# target to build an object file
+src/core/WebServer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku_core.dir/build.make CMakeFiles/gomoku_core.dir/src/core/WebServer.cpp.o
+.PHONY : src/core/WebServer.cpp.o
+
+src/core/WebServer.i: src/core/WebServer.cpp.i
+.PHONY : src/core/WebServer.i
+
+# target to preprocess a source file
+src/core/WebServer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku_core.dir/build.make CMakeFiles/gomoku_core.dir/src/core/WebServer.cpp.i
+.PHONY : src/core/WebServer.cpp.i
+
+src/core/WebServer.s: src/core/WebServer.cpp.s
+.PHONY : src/core/WebServer.s
+
+# target to generate assembly for a file
+src/core/WebServer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gomoku_core.dir/build.make CMakeFiles/gomoku_core.dir/src/core/WebServer.cpp.s
+.PHONY : src/core/WebServer.cpp.s
+
 src/core/engine.o: src/core/engine.cpp.o
 .PHONY : src/core/engine.o
 
@@ -727,6 +751,9 @@ help:
 	@echo "... src/core/TournamentManager.o"
 	@echo "... src/core/TournamentManager.i"
 	@echo "... src/core/TournamentManager.s"
+	@echo "... src/core/WebServer.o"
+	@echo "... src/core/WebServer.i"
+	@echo "... src/core/WebServer.s"
 	@echo "... src/core/engine.o"
 	@echo "... src/core/engine.i"
 	@echo "... src/core/engine.s"

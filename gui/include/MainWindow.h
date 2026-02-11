@@ -6,6 +6,7 @@
 #include "OpeningCreatorPanel.h"
 #include "GraphWidget.h"
 #include "TournamentManager.h"
+#include "WebServer.h"
 #include "options.h"
 
 class MainWindow : public Gtk::ApplicationWindow
@@ -88,5 +89,6 @@ protected:
 
     // Core Logic
     std::unique_ptr<class TournamentManager> m_Manager;
+    std::unique_ptr<WebServer> m_WebServer;
     sigc::connection m_TimerConnection;
 };

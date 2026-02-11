@@ -1618,6 +1618,7 @@ CMakeFiles/gomoku-gui.dir/src/gui/src/MainWindow.cpp.o: \
  /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/workers.h \
  /usr/include/c++/13/thread /usr/include/c++/13/bits/std_thread.h \
  /usr/include/c++/13/bits/this_thread_sleep.h \
+ /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/core/WebServer.h \
  /media/ngmint/Data/Programming/C++/ModifyCode/c-gomoku-cli-main/src/gui/include/TournamentDialog.h \
  /usr/include/c++/13/iomanip /usr/include/c++/13/locale \
  /usr/include/c++/13/bits/locale_facets_nonio.h \

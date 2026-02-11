@@ -23,27 +23,27 @@
 {
   "name": "RapfiSE",
   "cmd": "/media/ngmint/Data/Application/GomokuApplication/YixinUI/engine_o2",
-  "timeoutTurn": 10000,
-  "timeoutMatch": 0,
+  "timeoutTurn": 0,
+  "timeoutMatch": 180,000,
   "increment": 0,
   "nodes": 0,
   "depth": 0,
   "numThreads": 8,
-  "maxMemory": 1073741824,
-  "tolerance": 3000,
+  "maxMemory": 0,
+  "tolerance": 3,
   "options": []
 },
 {
   "name": "RapfiPE",
   "cmd": "/media/ngmint/Data/Application/GomokuApplication/YixinUI/engine",
-  "timeoutTurn": 10000,
-  "timeoutMatch": 0,
+  "timeoutTurn": 0,
+  "timeoutMatch": 180,000,
   "increment": 0,
   "nodes": 0,
   "depth": 0,
   "numThreads": 8,
-  "maxMemory": 1073741824,
-  "tolerance": 3000,
+  "maxMemory": 0,
+  "tolerance": 3,
   "options": []
 }
   ]
