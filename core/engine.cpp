@@ -532,7 +532,9 @@ bool Engine::bestmove(int64_t     &timeLeft,
         timeLeft          = std::max<int64_t>(matchTimeLimit - now, 0);
         turnTimeLeft      = turnTimeLimit - now;
 
-        if (const char *tail; process_common_output(line.c_str(), tail, moveply) == OT_MESSAGE) {
+        const char *tail = nullptr;
+        OutputType type = process_common_output(line.c_str(), tail, moveply);
+        if (type == OT_MESSAGE) {
             // record engine messages
             if (messages)
                 *messages += format("%i) %s: %s\n", moveply, name, tail);
@@ -541,9 +543,20 @@ bool Engine::bestmove(int64_t     &timeLeft,
             parse_thinking_message(tail, info);
             if (onInfo) onInfo(info, moveply);
         }
-        else if (Position::is_valid_move_gomostr(line)) {
-            best   = line;
-            result = true;
+        else if (type == OT_DIRECT) {
+             // Check if it's an info line (e.g. "Eval 10", "Depth 10")
+             // Gomocup engines often output these without "MESSAGE" prefix
+             if (line.find("Eval") != std::string::npos || line.find("eval") != std::string::npos || 
+                 line.find("score") != std::string::npos || line.find("Depth") != std::string::npos ||
+                 line.find("depth") != std::string::npos) {
+                  parse_thinking_message(line.c_str(), info);
+                  if (onInfo) onInfo(info, moveply);
+             }
+             
+             if (Position::is_valid_move_gomostr(line)) {
+                best   = line;
+                result = true;
+             }
         }
     }
 
@@ -714,13 +727,13 @@ void Engine::parse_thinking_message([[maybe_unused]] const char *line, Info &inf
     std::string token;
     
     while (ss >> token) {
-        if (token == "depth") {
+        if (token == "depth" || token == "Depth") {
             if (ss >> token) info.depth = std::atoi(token.c_str());
         }
-        else if (token == "time") {
+        else if (token == "time" || token == "Time") {
             if (ss >> token) info.time = std::atoll(token.c_str());
         }
-        else if (token == "score" || token == "eval") {
+        else if (token == "score" || token == "eval" || token == "Eval") {
             std::string val;
             if (ss >> val) {
                 if (val == "cp") {
